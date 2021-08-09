@@ -10,9 +10,6 @@
 #include <sstream>
 using namespace std;
 
-
-bool check(int val, vector <int> vec);
-
 void printVec(vector <int> vec);
 
 void printPQ(priority_queue<vector <int>> q);

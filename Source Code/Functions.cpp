@@ -1,14 +1,6 @@
 #include "Header.h"
 
 
-bool check(int val, vector <int> vec) {
-	if (vec.empty()) return false;
-	for (auto i : vec)
-		if (i == val)
-			return true;
-	return false;
-}
-
 void printVec(vector <int> vec) {
 	for (auto i : vec) {
 		cout << i << " ";
@@ -32,7 +24,6 @@ vector <int> AStar_Algo(vector<vector<int>> graph, vector <int> heu, int start, 
 	priority_queue<vector <int>, vector <vector <int>>, greater<vector <int>>> frontier;
 	frontier.push({ heu[start], start, -1 });
 	vector <int> temp;
-	vector <int> pathTemp;
 	int gChild, hChild, fChild, node;
 
 	while (!frontier.empty())
@@ -54,7 +45,6 @@ vector <int> AStar_Algo(vector<vector<int>> graph, vector <int> heu, int start, 
 				}
 
 				path.push_back(start);
-				pathTemp = path;
 				reverse(path.begin(), path.end());
 				return path;
 			}
@@ -64,7 +54,7 @@ vector <int> AStar_Algo(vector<vector<int>> graph, vector <int> heu, int start, 
 					gChild = temp[0] + graph[temp[1]][child];
 					hChild = heu[child];
 					fChild = gChild + hChild - heu[temp[1]];
-					frontier.push({ gChild, child, temp[1] });
+					frontier.push({ fChild, child, temp[1] });
 				}
 			}
 		}
